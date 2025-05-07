@@ -14,3 +14,5 @@ const val ROUT_ORDERS = "Orders"
 const val ROUT_SUPPLIERS = "Suppliers"
 const val ROUT_START = "Start"
 const val ROUT_DASHBOARD = "Start"
+const val ROUT_INVENTORY = "inventory"
+

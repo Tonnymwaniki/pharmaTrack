@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +15,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -74,35 +77,34 @@ import com.tonny.pharmatrack.ui.theme.newgrey
 @Composable
 fun SuppliersScreen(navController: NavController){
 
-    //Scaffold
     val mContext = LocalContext.current
-
     var selectedIndex by remember { mutableStateOf(0) }
+    var search by remember { mutableStateOf("") }
 
     Scaffold(
-        //TopBar
         topBar = {
-            TopAppBar(title = { Text("Suppliers") }, navigationIcon = {
-                IconButton(onClick = { /* Handle back/nav */ }) {
-                    Icon(Icons.Default.ArrowBack, contentDescription = "Back")
-                }
-            }, colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = newgrey,
-                titleContentColor = Color.White,
-                navigationIconContentColor = Color.White
-            ))
+            TopAppBar(
+                title = { Text("Suppliers") },
+                navigationIcon = {
+                    IconButton(onClick = { /* Back navigation */ }) {
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = newgrey,
+                    titleContentColor = Color.White,
+                    navigationIconContentColor = Color.White
+                )
+            )
         },
-
-        //BottomBar
         bottomBar = {
-            NavigationBar(
-                containerColor = newgrey
-            ){
+            NavigationBar(containerColor = newgrey) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     label = { Text("Search") },
                     selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0
+                    onClick = {
+                        selectedIndex = 0
                         navController.navigate(ROUT_HOME)
                     }
                 )
@@ -110,170 +112,158 @@ fun SuppliersScreen(navController: NavController){
                     icon = { Icon(Icons.Default.CheckCircle, contentDescription = "Check") },
                     label = { Text("Favorites") },
                     selected = selectedIndex == 1,
-                    onClick = { selectedIndex = 1
-                        navController.navigate (ROUT_HOME)
-                        // navController.navigate(ROUT_HOME)
+                    onClick = {
+                        selectedIndex = 1
+                        navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
                     label = { Text("Profile") },
                     selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
-                    }
+                    onClick = { selectedIndex = 2 }
                 )
-
             }
         },
-
-        //FloatingActionButton
         floatingActionButton = {
-            FloatingActionButton (
+            FloatingActionButton(
                 onClick = { /* Add action */ },
                 containerColor = Color.LightGray
             ) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
-        },
-        //content
-        content = { paddingValues ->
-            Column(
+        }
+    ) { paddingValues ->
+
+        Column(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .background(Color(0xFFF5F6FA))
+                .padding(16.dp)
+        ) {
+
+            OutlinedTextField(
+                value = search,
+                onValueChange = { search = it },
                 modifier = Modifier
-                    .padding(paddingValues)
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp),
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = null
+                    )
+                },
+                placeholder = { Text("Search...") }
+            )
 
+            Image(
+                painter = painterResource(R.drawable.cart1),
+                contentDescription = "home",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                contentScale = ContentScale.FillWidth
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Services available",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.ExtraBold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-
-
-                //Main Contents of the page
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                //SearchBar
-
-                var search by remember { mutableStateOf("") }
-                OutlinedTextField(
-                    value = search,
-                    onValueChange = { search = it},
-                    modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-                    leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
-                    placeholder = { Text(text = "Search...")}
-
-                )
-
-
-                //End of SearchBar
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Image(
-                    painter = painterResource(R.drawable.cart1),
-                    contentDescription = "home",
-                    modifier = Modifier.fillMaxWidth().height(200.dp),
-                    contentScale = ContentScale.FillWidth
-                )
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                Text(
-                    text = "Services available",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.ExtraBold,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxSize()
-
-                )
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                //row
-                //new
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(Color(0xFFF5F6FA))
-                        .padding(16.dp)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    // Top - Active Prescriptions
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        PrescriptionCard("Dr. Max Carrel", "12.07.2024", Color(0xFFB490F0))
-                        PrescriptionCard("Dr. Mike Brown", "10.07.2024", Color(0xFF6FD59D))
-                    }
+                    PrescriptionCard("Dr. Max Carrel", "12.07.2024", Color(0xFFB490F0))
+                    PrescriptionCard("Dr. Mike Brown", "10.07.2024", Color(0xFF6FD59D))
+                }
 
-                    Spacer(modifier = Modifier.height(24.dp))
-
-                    Text(
-                        text = "Orders",
-                        style = MaterialTheme.typography.titleMedium,
-                        color = Color.DarkGray
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    OrderItem(
-                        pharmacyName = "Pharmacy ABC, Harry St. 10",
-                        amount = "167.90 $",
-                        status = "Processed",
-                        products = "2 products"
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    OrderItem(
-                        pharmacyName = "ALPHA Farmacy, Tyler St. 24",
-                        amount = "156.20 $",
-                        status = "Delivered",
-                        products = "Paracetamol, Amoxicillin..."
-                    )
-
-                    Spacer(modifier = Modifier.height(24.dp))
-
-                    // Total Amount
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text("Total amount", style = MaterialTheme.typography.titleMedium)
-                        Text("156.20 $", style = MaterialTheme.typography.titleMedium)
-                    }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    PrescriptionCard("Dr. Anne Lee", "14.07.2024", Color(0xFFFFC107))
+                    PrescriptionCard("Dr. Samuel Kim", "09.07.2024", Color(0xFF03A9F4))
                 }
             }
 
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                text = "Orders",
+                style = MaterialTheme.typography.titleMedium,
+                color = Color.DarkGray
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OrderItem(
+                pharmacyName = "Pharmacy ABC, Harry St. 10",
+                amount = "167.90 $",
+                status = "Processed",
+                products = "2 products"
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OrderItem(
+                pharmacyName = "ALPHA Farmacy, Tyler St. 24",
+                amount = "156.20 $",
+                status = "Delivered",
+                products = "Paracetamol, Amoxicillin..."
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            OrderItem(
+                pharmacyName = "MedicPro, Baker St. 5",
+                amount = "88.45 $",
+                status = "Pending",
+                products = "Ibuprofen, Vitamin D"
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            OrderItem(
+                pharmacyName = "HealWell Pharmacy, Queen St. 19",
+                amount = "199.00 $",
+                status = "In Transit",
+                products = "Antibiotics, Cough Syrup..."
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            })
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text("Total amount", style = MaterialTheme.typography.titleMedium)
+                Text("156.20 $", style = MaterialTheme.typography.titleMedium)
+            }
         }
+    }
+
+
+
+
+}
 
 @Composable
-fun PrescriptionCard(name : String, date: String, bgColor: Color) {
-
+fun PrescriptionCard(name: String, date: String, bgColor: Color) {
     Column(
         modifier = Modifier
             .width(150.dp)
@@ -307,3 +297,4 @@ fun OrderItem(pharmacyName: String, amount: String, status: String, products: St
 fun SuppliersScreenPreview(){
     SuppliersScreen(navController= rememberNavController())
 }
+

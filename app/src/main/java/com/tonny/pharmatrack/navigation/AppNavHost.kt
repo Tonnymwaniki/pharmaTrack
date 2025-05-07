@@ -16,6 +16,7 @@ import com.tonny.pharmatrack.ui.screens.auth.LoginScreen
 import com.tonny.pharmatrack.ui.screens.auth.RegisterScreen
 import com.tonny.pharmatrack.ui.screens.dashboard.DashboardScreen
 import com.tonny.pharmatrack.ui.screens.home.HomeScreen
+import com.tonny.pharmatrack.ui.screens.inventory.InventoryScreen
 import com.tonny.pharmatrack.ui.screens.orders.OrdersScreen
 import com.tonny.pharmatrack.ui.screens.splash.SplashScreen
 import com.tonny.pharmatrack.ui.screens.start.StartScreen
@@ -27,7 +28,7 @@ import com.tonny.pharmatrack.viewmodel.AuthViewModel
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_DASHBOARD ,
+    startDestination: String = ROUT_HOME ,
 
 
     ) {
@@ -61,6 +62,12 @@ fun AppNavHost(
         composable(ROUT_DASHBOARD) {
             DashboardScreen(navController)
         }
+
+        composable(ROUT_INVENTORY) {
+            InventoryScreen(navController)
+        }
+
+
 
 
 
