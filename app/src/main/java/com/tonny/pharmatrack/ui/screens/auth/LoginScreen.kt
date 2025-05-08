@@ -32,7 +32,9 @@ import com.tonny.pharmatrack.viewmodel.AuthViewModel
 import androidx.compose.animation.core.*
 import androidx.compose.ui.draw.scale
 import androidx.compose.material.icons.filled.Lock
-
+import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
+import com.tonny.pharmatrack.navigation.ROUT_REGISTER
+import com.tonny.pharmatrack.navigation.ROUT_SUPPLIERS
 
 
 @Composable
@@ -53,10 +55,10 @@ fun LoginScreen(
                 Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
             } else {
                 if (user.role == "admin") {
-                    navController.navigate(ROUT_HOME) {
+                    navController.navigate(ROUT_SUPPLIERS) {
                     }
                 } else {
-                    navController.navigate(ROUT_ABOUT) {
+                    navController.navigate(ROUT_DASHBOARD) {
                     }
                 }
             }
@@ -154,7 +156,7 @@ fun LoginScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         // Register Navigation Button
-        TextButton(onClick = { navController.navigate(ROUT_HOME) }) {
+        TextButton(onClick = { navController.navigate(ROUT_REGISTER) }) {
             Text("Don't have an account? Register")
         }
     }}

@@ -20,7 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tonny.pharmatrack.R
+import com.tonny.pharmatrack.navigation.ROUT_HOME
 import com.tonny.pharmatrack.navigation.ROUT_LOGIN
+import com.tonny.pharmatrack.navigation.ROUT_START
 import com.tonny.pharmatrack.ui.theme.newbrown1
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,7 +37,7 @@ fun SplashScreen(navController: NavController){
     val coroutine = rememberCoroutineScope()
     coroutine.launch {
         delay(5000)
-        navController.navigate(ROUT_LOGIN)
+        navController.navigate(ROUT_HOME)
 
     }
     //end of navigation

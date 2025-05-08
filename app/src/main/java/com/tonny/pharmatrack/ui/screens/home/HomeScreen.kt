@@ -53,6 +53,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tonny.pharmatrack.navigation.ROUT_ADD_MEDICINE
+import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
+import com.tonny.pharmatrack.navigation.ROUT_INVENTORY
 import com.tonny.pharmatrack.ui.theme.newbrown
 
 
@@ -68,19 +71,25 @@ fun HomeScreen(navController: NavController){
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     label = { Text("Home") },
                     selected = true,
-                    onClick = {},
+                    onClick = {
+                        navController.navigate(ROUT_DASHBOARD)
+                    },
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Cart") },
                     label = { Text("Cart") },
                     selected = false,
-                    onClick = {}
+                    onClick = {
+                        navController.navigate(ROUT_INVENTORY)
+                    }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
                     label = { Text("Profile") },
                     selected = false,
-                    onClick = {}
+                    onClick = {
+                        navController.navigate(ROUT_ADD_MEDICINE)
+                    }
                 )
             }
         }

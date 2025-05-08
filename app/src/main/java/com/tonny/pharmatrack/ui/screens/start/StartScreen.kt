@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tonny.pharmatrack.navigation.ROUT_HOME
+import com.tonny.pharmatrack.navigation.ROUT_LOGIN
 
 @Composable
 fun StartScreen(navController: NavController){
@@ -67,7 +69,7 @@ fun StartScreen(navController: NavController){
             Button(
                 onClick = {
                     // Navigate to next screen, e.g., "home" or "medicines"
-                    navController.navigate("home")
+                    navController.navigate(ROUT_LOGIN)
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFC107))
             ) {

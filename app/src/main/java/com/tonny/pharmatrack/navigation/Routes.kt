@@ -16,3 +16,10 @@ const val ROUT_START = "Start"
 const val ROUT_DASHBOARD = "Start"
 const val ROUT_INVENTORY = "inventory"
 
+const val ROUT_ADD_MEDICINE = "add_product"
+const val ROUT_MEDICINE_LIST = "product_list"
+const val ROUT_EDIT_MEDICINE = "edit_product/{productId}"
+
+// ✅ Helper function for navigation
+fun editMedicineRoute(medicineId: Int) = "edit_medicine/$medicineId"
+

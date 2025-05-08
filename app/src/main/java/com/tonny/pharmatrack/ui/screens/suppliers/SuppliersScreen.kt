@@ -64,6 +64,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tonny.pharmatrack.R
 import com.tonny.pharmatrack.navigation.ROUT_HOME
+import com.tonny.pharmatrack.navigation.ROUT_ORDERS
 import com.tonny.pharmatrack.ui.theme.newbrown1
 import com.tonny.pharmatrack.ui.theme.newgrey
 
@@ -114,7 +115,7 @@ fun SuppliersScreen(navController: NavController){
                     selected = selectedIndex == 1,
                     onClick = {
                         selectedIndex = 1
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ORDERS)
                     }
                 )
                 NavigationBarItem(

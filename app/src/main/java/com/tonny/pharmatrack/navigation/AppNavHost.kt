@@ -6,9 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.tonny.pharmatrack.data.UserDatabase
 import com.tonny.pharmatrack.repository.UserRepository
 import com.tonny.pharmatrack.ui.screens.about.AboutScreen
@@ -17,18 +19,24 @@ import com.tonny.pharmatrack.ui.screens.auth.RegisterScreen
 import com.tonny.pharmatrack.ui.screens.dashboard.DashboardScreen
 import com.tonny.pharmatrack.ui.screens.home.HomeScreen
 import com.tonny.pharmatrack.ui.screens.inventory.InventoryScreen
+import com.tonny.pharmatrack.ui.screens.inventory.Medicine
+import com.tonny.pharmatrack.ui.screens.medicine.AddMedicineScreen
+import com.tonny.pharmatrack.ui.screens.medicine.EditMedicineScreen
+import com.tonny.pharmatrack.ui.screens.medicine.MedicineListScreen
 import com.tonny.pharmatrack.ui.screens.orders.OrdersScreen
 import com.tonny.pharmatrack.ui.screens.splash.SplashScreen
 import com.tonny.pharmatrack.ui.screens.start.StartScreen
 import com.tonny.pharmatrack.ui.screens.suppliers.SuppliersScreen
 import com.tonny.pharmatrack.viewmodel.AuthViewModel
-
+import com.tonny.pharmatrack.viewmodel.MedicineViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_HOME ,
+    startDestination: String = ROUT_SPLASH ,
+    medicineViewModel: MedicineViewModel= viewModel(),
 
 
     ) {
@@ -107,6 +115,26 @@ fun AppNavHost(
                     popUpTo(ROUT_LOGIN) { inclusive = true }
                 }
             })
+        }
+
+
+        // PRODUCTS
+        composable(ROUT_ADD_MEDICINE) {
+            AddMedicineScreen(navController, medicineViewModel)
+        }
+
+        composable(ROUT_MEDICINE_LIST) {
+            MedicineListScreen(navController, medicineViewModel)
+        }
+
+        composable(
+            route = ROUT_EDIT_MEDICINE,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val medicineId = backStackEntry.arguments?.getInt("productId")
+            if (medicineId != null) {
+                EditMedicineScreen(medicineId, navController, medicineViewModel)
+            }
         }
 
 
