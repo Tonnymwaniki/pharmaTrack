@@ -57,6 +57,7 @@ import com.tonny.pharmatrack.navigation.ROUT_ADD_MEDICINE
 import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
 import com.tonny.pharmatrack.navigation.ROUT_INVENTORY
 import com.tonny.pharmatrack.ui.theme.newbrown
+import com.tonny.pharmatrack.ui.theme.newgrey
 
 
 @Composable
@@ -66,7 +67,7 @@ fun HomeScreen(navController: NavController){
 
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar(containerColor = newgrey) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     label = { Text("Home") },
@@ -122,11 +123,11 @@ fun HomeScreen(navController: NavController){
             Spacer(modifier = Modifier.height(16.dp))
 
             Card(
-                colors = CardDefaults.cardColors(containerColor = Color(0xFFD0F0FD)),
+                colors = CardDefaults.cardColors(containerColor = Color(0xFF0745A9)),
                 shape = RoundedCornerShape(16.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(16.dp)) {
+                Column(modifier = Modifier.padding(40.dp)) {
                     Text("Offer Ends Today", fontWeight = FontWeight.Bold)
                     Text("Up to 25% off on selected items", fontSize = 14.sp)
                 }
@@ -134,9 +135,9 @@ fun HomeScreen(navController: NavController){
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("Categories", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-            Spacer(modifier = Modifier.height(8.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            Text("Categories", fontWeight = FontWeight.Bold, fontSize = 22.sp)
+            Spacer(modifier = Modifier.height(10.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(23.dp)) {
                 CategoryItem("Covid Essentials")
                 CategoryItem("Cold & Cough")
                 CategoryItem("Baby Needs")
@@ -144,12 +145,11 @@ fun HomeScreen(navController: NavController){
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text("Product Recommend", fontWeight = FontWeight.Bold, fontSize = 16.sp)
-            Spacer(modifier = Modifier.height(8.dp))
+
 
             Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 // Recommended Products Section
-                Text("Product Recommend", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                Text("Product Recommend", fontWeight = FontWeight.Bold, fontSize = 23.sp)
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Row(
@@ -173,6 +173,38 @@ fun HomeScreen(navController: NavController){
                     Text(if (showMore) "Show Less" else "Show More")
                 }
             }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ProductCard("vitamin D", "IDR 21.000", R.drawable.vitamin )
+                ProductCard("Amoxil ", "IDR 20.500", R.drawable.amoxil)
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ProductCard("levoxyl", "IDR 22.000", R.drawable.levoxyl )
+                ProductCard("zestril ", "IDR 23.500", R.drawable.zestril)
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ProductCard("Motrin", "IDR 16.000", R.drawable.motrin )
+                ProductCard("Aderal ", "IDR 19.500", R.drawable.aderal)
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                ProductCard("Norvasc", "IDR 16.000", R.drawable.norvasc )
+                ProductCard("Panadol ", "IDR 19.500", R.drawable.panadol)
+            }
         }
     }
 }
@@ -181,7 +213,7 @@ fun HomeScreen(navController: NavController){
 fun ProductCard(name: String, price: String, imageResId: Int) {
     Card(
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD)),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF0D5BEE)),
         modifier = Modifier
             .width(150.dp)
             .height(220.dp)
@@ -210,7 +242,7 @@ fun ProductCard(name: String, price: String, imageResId: Int) {
 fun CategoryItem(name: String) {
     Card(
         shape = RoundedCornerShape(12.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF42A5F5)),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFF064098)),
         modifier = Modifier
             .height(40.dp)
             .wrapContentWidth()

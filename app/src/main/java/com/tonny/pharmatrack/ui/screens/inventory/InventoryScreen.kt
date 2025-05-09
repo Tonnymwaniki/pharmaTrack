@@ -48,6 +48,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
+import com.tonny.pharmatrack.navigation.ROUT_HOME
+import com.tonny.pharmatrack.navigation.ROUT_SUPPLIERS
 
 
 data class Medicine(val name: String, val stock: Int, val price: Double)
@@ -85,32 +88,38 @@ fun InventoryScreen(navController: NavController){
         topBar = {
             TopAppBar(
                 title = { Text("PharmaTrack Inventory", color = Color.White) },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF1976D2))
+                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color(0xFF0724B2))
             )
         },
         bottomBar = {
-            NavigationBar(containerColor = Color(0xFF1565C0)) {
+            NavigationBar(containerColor = Color(0xFF0A22BD)) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
                     label = { Text("Home") },
                     selected = false,
-                    onClick = {}
+                    onClick = {
+                        navController.navigate(ROUT_HOME)
+                    }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Star, contentDescription = "Inventory") },
-                    label = { Text("Inventory") },
+                    icon = { Icon(Icons.Default.Star, contentDescription = "Dashboard") },
+                    label = { Text("Dashboard") },
                     selected = true,
-                    onClick = {}
+                    onClick = {
+                        navController.navigate(ROUT_DASHBOARD)
+                    }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
+                    icon = { Icon(Icons.Default.Person, contentDescription = "Suppliers") },
+                    label = { Text("Suppliers") },
                     selected = false,
-                    onClick = {}
+                    onClick = {
+                        navController.navigate(ROUT_SUPPLIERS)
+                    }
                 )
             }
         },
-        containerColor = Color(0xFFF3F7FF)
+        containerColor = Color(0xFF38AD11)
     ) { padding ->
         Column(
             modifier = Modifier
@@ -170,7 +179,7 @@ fun MedicineCard(medicine: Medicine) {
                     .size(48.dp)
                     .background(
                         Brush.linearGradient(
-                            listOf(Color(0xFF42A5F5), Color(0xFF1E88E5))
+                            listOf(Color(0xFF073DC2), Color(0xFF0837C0))
                         ),
                         shape = CircleShape
                     ),

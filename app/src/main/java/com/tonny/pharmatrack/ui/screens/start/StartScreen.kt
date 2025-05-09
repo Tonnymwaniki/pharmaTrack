@@ -71,7 +71,7 @@ fun StartScreen(navController: NavController){
                     // Navigate to next screen, e.g., "home" or "medicines"
                     navController.navigate(ROUT_LOGIN)
                 },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFFC107))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF57A90E))
             ) {
                 Text(text = "Get Started", color = Color.Black)
             }
@@ -99,7 +99,7 @@ fun MedicineBackground() {
             val x = (0..size.width.toInt()).random().toFloat()
             val y = (0..size.height.toInt()).random().toFloat()
             drawCircle(
-                color = Color.White.copy(alpha = 0.15f),
+                color = Color.Blue.copy(alpha = 0.15f),
                 radius = iconSize / 2,
                 center = Offset(x, y)
             )

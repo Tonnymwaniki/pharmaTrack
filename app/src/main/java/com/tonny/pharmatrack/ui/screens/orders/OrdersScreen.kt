@@ -41,7 +41,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-
+import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
+import com.tonny.pharmatrack.navigation.ROUT_HOME
+import com.tonny.pharmatrack.navigation.ROUT_INVENTORY
+import com.tonny.pharmatrack.ui.theme.newgrey
 
 
 // --- DATA CLASS ---
@@ -57,24 +60,27 @@ fun OrdersScreen(navController: NavController){
     var selectedTab by remember { mutableStateOf(1) }
     Scaffold(
         bottomBar = {
-            NavigationBar {
+            NavigationBar(containerColor = newgrey) {
                 NavigationBarItem(
                     selected = selectedTab == 0,
-                    onClick = { selectedTab = 0 },
+                    onClick = { selectedTab = 0
+                        navController.navigate(ROUT_HOME) },
                     icon = { Icon(Icons.Filled.Home, contentDescription = "Home") },
                     label = { Text("Home") }
                 )
                 NavigationBarItem(
                     selected = selectedTab == 1,
-                    onClick = { selectedTab = 1 },
-                    icon = { Icon(Icons.Filled.List, contentDescription = "Orders") },
-                    label = { Text("Orders") }
+                    onClick = { selectedTab = 1
+                        navController.navigate(ROUT_INVENTORY) },
+                    icon = { Icon(Icons.Filled.List, contentDescription = "Inventory") },
+                    label = { Text("Inventory") }
                 )
                 NavigationBarItem(
                     selected = selectedTab == 2,
-                    onClick = { selectedTab = 2 },
-                    icon = { Icon(Icons.Filled.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") }
+                    onClick = { selectedTab = 2
+                        navController.navigate(ROUT_DASHBOARD)},
+                    icon = { Icon(Icons.Filled.Person, contentDescription = "Dashboard") },
+                    label = { Text("Dashboard") }
                 )
             }
         }
@@ -104,7 +110,12 @@ fun OrdersScreen() {
         PharmaOrder("Cough Syrup", "3 Bottles", "Pending"),
         PharmaOrder("Antacid", "2 Packs", "Shipped"),
         PharmaOrder("Vitamin C", "1 Bottle", "Delivered"),
-        PharmaOrder("Insulin", "5 Pens", "Pending")
+        PharmaOrder("Insulin", "5 Pens", "Pending"),
+
+        PharmaOrder("Amoxilin", "3 Bottles", "Shipped"),
+        PharmaOrder("Panadol", "6 Packs", "Pending"),
+      PharmaOrder("Vitamin D", "1 Bottle", "Delivered"),
+      PharmaOrder("Lexyolin", "10 Pens", "Pending")
     )
 
     var selectedFilter by remember { mutableStateOf("All") }

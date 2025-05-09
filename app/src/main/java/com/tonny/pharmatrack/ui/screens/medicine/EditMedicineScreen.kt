@@ -71,14 +71,14 @@ fun EditMedicineScreen(medicineId: Int?, navController: NavController, viewModel
                         DropdownMenuItem(
                             text = { Text("Home") },
                             onClick = {
-                               // navController.navigate(ROUT_PRODUCT_LIST)
+                                navController.navigate(ROUT_MEDICINE_LIST)
                                 showMenu = false
                             }
                         )
                         DropdownMenuItem(
                             text = { Text("Add Medicine") },
                             onClick = {
-                                //navController.navigate(ROUT_ADD_PRODUCT)
+                                navController.navigate(ROUT_ADD_MEDICINE)
                                 showMenu = false
                             }
                         )
@@ -126,7 +126,7 @@ fun EditMedicineScreen(medicineId: Int?, navController: NavController, viewModel
                     onClick = { imagePicker.launch("image/*") },
                     modifier = Modifier.fillMaxWidth()
                         .padding(start = 40.dp, end = 40.dp),
-                    colors = ButtonDefaults.buttonColors(Color.LightGray)
+                    colors = ButtonDefaults.buttonColors(Color.Blue)
                 ) {
                     Text("Change Image")
                 }
@@ -163,19 +163,19 @@ fun EditMedicineScreen(medicineId: Int?, navController: NavController, viewModel
 @Composable
 fun BottomNavigationBar2(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFF6F6A72),
+        containerColor = Color(0xFF093DD9),
         contentColor = Color.White
     ) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_MEDICINE_LIST) },
-            icon = { Icon(Icons.Default.Menu, contentDescription = "Product List") },
-            label = { Text("Products") }
+            icon = { Icon(Icons.Default.Menu, contentDescription = "Medicine List") },
+            label = { Text("Medicine") }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_MEDICINE) },
-            icon = { Icon(Icons.Default.Menu, contentDescription = "Add Product") },
+            icon = { Icon(Icons.Default.Menu, contentDescription = "Add Medicine") },
             label = { Text("Add") }
         )
     }

@@ -81,8 +81,8 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Product", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
-                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                title = { Text("Add Medicine", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Gray),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
@@ -97,14 +97,14 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                         onDismissRequest = { showMenu = false }
                     ) {
                         DropdownMenuItem(
-                            text = { Text("Product List") },
+                            text = { Text("Medicine List") },
                             onClick = {
                                 navController.navigate(ROUT_MEDICINE_LIST)
                                 showMenu = false
                             }
                         )
                         DropdownMenuItem(
-                            text = { Text("Add Product") },
+                            text = { Text("Add Medicine") },
                             onClick = {
                                 navController.navigate(ROUT_ADD_MEDICINE)
                                 showMenu = false
@@ -129,7 +129,7 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                 OutlinedTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = { Text("Product Name") },
+                    label = { Text("Medicine Name") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.name), contentDescription = "Name") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -140,7 +140,7 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                 OutlinedTextField(
                     value = price,
                     onValueChange = { price = it },
-                    label = { Text("Product Price") },
+                    label = { Text("Medicine Price") },
                     leadingIcon = { Icon(painter = painterResource(R.drawable.price), contentDescription = "Price") },
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -165,7 +165,7 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                 Box(
                     modifier = Modifier
                         .size(200.dp)
-                        .background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+                        .background(Color.Gray, shape = RoundedCornerShape(10.dp))
                         .clickable { imagePicker.launch("image/*") },
                     contentAlignment = Alignment.Center
                 ) {
@@ -179,7 +179,7 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                     } else {
                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
                             Icon(painter = painterResource(R.drawable.image), contentDescription = "Pick Image")
-                            Text("Tap to pick image", color = Color.DarkGray)
+                            Text("Tap to pick image", color = Color.Gray)
                         }
                     }
                 }
@@ -192,14 +192,14 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
                         val priceValue = price.toDoubleOrNull()
                         if (priceValue != null) {
                             imageUri?.toString()?.let { viewModel.addProduct(name, priceValue, phone,it) }
-                           // navController.navigate(ROUT_PRODUCT_LIST)
+                            navController.navigate(ROUT_MEDICINE_LIST)
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp),
-                    colors = ButtonDefaults.buttonColors(Color.LightGray)
+                    colors = ButtonDefaults.buttonColors(Color.Blue)
                 ) {
-                    Text("Add Product", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                    Text("Add Medicine", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
             }
         }
@@ -210,19 +210,19 @@ fun AddMedicineScreen(navController: NavController, viewModel: MedicineViewModel
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     NavigationBar(
-        containerColor = Color(0xFF6F6A72),
+        containerColor = Color(0xFF142DE7),
         contentColor = Color.White
     ) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_MEDICINE_LIST) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
+            icon = { Icon(Icons.Default.Home, contentDescription = "Medicine List") },
             label = { Text("Home") }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_MEDICINE) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
+            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Medicine") },
             label = { Text("Add") }
         )
 

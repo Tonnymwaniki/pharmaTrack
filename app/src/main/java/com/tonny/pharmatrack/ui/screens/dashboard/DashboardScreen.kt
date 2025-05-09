@@ -1,6 +1,10 @@
 package com.tonny.pharmatrack.ui.screens.dashboard
 
+import android.R.attr.icon
+import android.R.attr.label
+import android.R.attr.onClick
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,16 +47,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.tonny.pharmatrack.navigation.ROUT_ADD_MEDICINE
+import com.tonny.pharmatrack.navigation.ROUT_EDIT_MEDICINE
+import com.tonny.pharmatrack.navigation.ROUT_INVENTORY
+import com.tonny.pharmatrack.navigation.ROUT_ORDERS
+import com.tonny.pharmatrack.navigation.ROUT_SUPPLIERS
+import com.tonny.pharmatrack.ui.theme.newgrey4
 import java.time.format.TextStyle
 
 @Composable
 fun DashboardScreen(navController: NavController){
+
+
+
 
 
 
@@ -91,7 +105,7 @@ fun DashboardScreen(navController: NavController){
                     .height(120.dp)
                     .background(
                         Brush.linearGradient(
-                            listOf(Color(0xFF56CCF2), Color(0xFF2F80ED))
+                            listOf(Color(0xFF07A1D0), Color(0xFF093FC5))
                         ),
                         shape = RoundedCornerShape(12.dp)
                     ),
@@ -103,12 +117,7 @@ fun DashboardScreen(navController: NavController){
             Spacer(Modifier.height(16.dp))
 
             // Quick access buttons
-            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                QuickAccessButton("Orders", Icons.Default.List)
-                QuickAccessButton("Prescriptions", Icons.Default.Face)
-                QuickAccessButton("Cart", Icons.Default.ShoppingCart)
-                QuickAccessButton("Support", Icons.Default.Share)
-            }
+
 
             Spacer(Modifier.height(24.dp))
 
@@ -120,7 +129,7 @@ fun DashboardScreen(navController: NavController){
                         modifier = Modifier
                             .size(100.dp)
                             .padding(end = 8.dp)
-                            .background(Color(0xFFE0F7FA), RoundedCornerShape(10.dp)),
+                            .background(Color(0xFF333CFF), RoundedCornerShape(10.dp)),
                         contentAlignment = Alignment.Center
                     ) {
                         Text("Category ${it + 1}", fontSize = 14.sp)
@@ -139,7 +148,7 @@ fun DashboardScreen(navController: NavController){
                             .width(140.dp)
                             .padding(end = 8.dp),
                         shape = RoundedCornerShape(12.dp),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFFDE7))
+                        colors = CardDefaults.cardColors(containerColor = Color(0xF7404040))
                     ) {
                         Column(
                             modifier = Modifier
@@ -150,7 +159,8 @@ fun DashboardScreen(navController: NavController){
                             Box(
                                 modifier = Modifier
                                     .size(60.dp)
-                                    .background(Color.LightGray, shape = RoundedCornerShape(8.dp))
+                                    .background(Color.LightGray, shape = RoundedCornerShape(8.dp)),
+
                             )
                             Spacer(Modifier.height(8.dp))
                             Text("Featured ${it + 1}", fontWeight = FontWeight.SemiBold)
@@ -166,7 +176,7 @@ fun DashboardScreen(navController: NavController){
             Spacer(Modifier.height(8.dp))
             Column {
                 Text("“Fast delivery and genuine medicine!” — Alice", fontSize = 12.sp)
-                Spacer(Modifier.height(4.dp))
+                Spacer(Modifier.height(7.dp))
                 Text("“Customer support was very helpful.” — Bob", fontSize = 12.sp)
             }
 
@@ -184,29 +194,14 @@ fun DashboardScreen(navController: NavController){
     }
 }
 
-@Composable
-fun QuickAccessButton(label: String, icon: androidx.compose.ui.graphics.vector.ImageVector) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Box(
-            modifier = Modifier
-                .size(48.dp)
-                .background(MaterialTheme.colorScheme.primaryContainer, CircleShape),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(icon, contentDescription = label, tint = MaterialTheme.colorScheme.onPrimaryContainer)
-        }
-        Spacer(Modifier.height(4.dp))
-        Text(label, fontSize = 12.sp)
-    }
-}
+
+
 
 @Composable
 fun BottomNavigationBar(selectedItem: String, onItemSelected: (String) -> Unit) {
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.primary,
-        contentColor = Color.White
+        containerColor = newgrey4,
+        contentColor = Color.Blue
     ) {
         val items = listOf("Home", "Search", "Profile")
         val icons = listOf(Icons.Filled.Home, Icons.Filled.Search, Icons.Filled.Person)

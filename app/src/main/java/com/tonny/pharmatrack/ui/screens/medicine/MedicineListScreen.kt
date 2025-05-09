@@ -66,8 +66,8 @@ fun MedicineListScreen(navController: NavController, viewModel: MedicineViewMode
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Products", fontSize = 20.sp) },
-                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
+                    title = { Text("Medicine", fontSize = 20.sp) },
+                    colors = TopAppBarDefaults.mediumTopAppBarColors(Color.Blue),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {
                             Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
@@ -77,14 +77,14 @@ fun MedicineListScreen(navController: NavController, viewModel: MedicineViewMode
                             onDismissRequest = { showMenu = false }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("Product List") },
+                                text = { Text("Medicine List") },
                                 onClick = {
                                     navController.navigate(ROUT_MEDICINE_LIST)
                                     showMenu = false
                                 }
                             )
                             DropdownMenuItem(
-                                text = { Text("Add Product") },
+                                text = { Text("Add Medicine") },
                                 onClick = {
                                     navController.navigate(ROUT_ADD_MEDICINE)
                                     showMenu = false
@@ -102,7 +102,7 @@ fun MedicineListScreen(navController: NavController, viewModel: MedicineViewMode
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp, vertical = 8.dp),
-                    placeholder = { Text("Search products...") },
+                    placeholder = { Text("Search medicine...") },
                     singleLine = true,
                     leadingIcon = {
                         Icon(
@@ -161,7 +161,7 @@ fun MedicineItem(navController: NavController, medicine: Medicine, viewModel: Me
             // Product Image
             Image(
                 painter = painter,
-                contentDescription = "Product Image",
+                contentDescription = "Medicine Image",
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
@@ -347,13 +347,13 @@ fun BottomNavigationBar1(navController: NavController) {
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_MEDICINE_LIST) },
-            icon = { Icon(Icons.Default.Home, contentDescription = "Product List") },
+            icon = { Icon(Icons.Default.Home, contentDescription = "Medicine List") },
             label = { Text("Home") }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_ADD_MEDICINE) },
-            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Product") },
+            icon = { Icon(Icons.Default.AddCircle, contentDescription = "Add Medicine") },
             label = { Text("Add") }
         )
     }
