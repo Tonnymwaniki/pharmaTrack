@@ -64,6 +64,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.tonny.pharmatrack.R
 import com.tonny.pharmatrack.navigation.ROUT_HOME
+import com.tonny.pharmatrack.navigation.ROUT_INTENT
 import com.tonny.pharmatrack.navigation.ROUT_ORDERS
 import com.tonny.pharmatrack.ui.theme.newbrown1
 import com.tonny.pharmatrack.ui.theme.newgrey
@@ -102,16 +103,16 @@ fun SuppliersScreen(navController: NavController){
             NavigationBar(containerColor = newgrey) {
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    label = { Text("Search") },
-                    selected = selectedIndex == 0,
+                    label = { Text("home") },
+                    selected = selectedIndex == 1,
                     onClick = {
-                        selectedIndex = 0
+                        selectedIndex = 1
                         navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.CheckCircle, contentDescription = "Check") },
-                    label = { Text("Favorites") },
+                    label = { Text("orders") },
                     selected = selectedIndex == 1,
                     onClick = {
                         selectedIndex = 1
@@ -120,9 +121,10 @@ fun SuppliersScreen(navController: NavController){
                 )
                 NavigationBarItem(
                     icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
-                    selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2 }
+                    label = { Text("Intent") },
+                    selected = selectedIndex == 1,
+                    onClick = { selectedIndex = 1
+                        navController.navigate(ROUT_INTENT)}
                 )
             }
         },
@@ -172,7 +174,7 @@ fun SuppliersScreen(navController: NavController){
             Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "Services available",
+                text = "Suppliers available",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.ExtraBold,
                 textAlign = TextAlign.Center,
@@ -188,16 +190,16 @@ fun SuppliersScreen(navController: NavController){
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    PrescriptionCard("Dr. Max Carrel", "12.07.2024", Color(0xFFB490F0))
-                    PrescriptionCard("Dr. Mike Brown", "10.07.2024", Color(0xFF6FD59D))
+                    PrescriptionCard("Dr. ken murithi", "12.07.2024", Color(0xFFB490F0))
+                    PrescriptionCard("Dr. Mike mwaniki", "10.07.2024", Color(0xFF6FD59D))
                 }
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    PrescriptionCard("Dr. Anne Lee", "14.07.2024", Color(0xFFFFC107))
-                    PrescriptionCard("Dr. Samuel Kim", "09.07.2024", Color(0xFF03A9F4))
+                    PrescriptionCard("Dr. Anne mwikali", "14.07.2024", Color(0xFFFFC107))
+                    PrescriptionCard("Dr. Samuel ruto", "09.07.2024", Color(0xFF03A9F4))
                 }
             }
 
@@ -213,7 +215,7 @@ fun SuppliersScreen(navController: NavController){
 
             OrderItem(
                 pharmacyName = "Pharmacy ABC, Harry St. 10",
-                amount = "167.90 $",
+                amount = "167.90 ksh",
                 status = "Processed",
                 products = "2 products"
             )
@@ -222,7 +224,7 @@ fun SuppliersScreen(navController: NavController){
 
             OrderItem(
                 pharmacyName = "ALPHA Farmacy, Tyler St. 24",
-                amount = "156.20 $",
+                amount = "156.20 ksh",
                 status = "Delivered",
                 products = "Paracetamol, Amoxicillin..."
             )
@@ -231,7 +233,7 @@ fun SuppliersScreen(navController: NavController){
 
             OrderItem(
                 pharmacyName = "MedicPro, Baker St. 5",
-                amount = "88.45 $",
+                amount = "88.45 ksh",
                 status = "Pending",
                 products = "Ibuprofen, Vitamin D"
             )
@@ -240,7 +242,7 @@ fun SuppliersScreen(navController: NavController){
 
             OrderItem(
                 pharmacyName = "HealWell Pharmacy, Queen St. 19",
-                amount = "199.00 $",
+                amount = "199.00 ksh",
                 status = "In Transit",
                 products = "Antibiotics, Cough Syrup..."
             )
@@ -253,7 +255,7 @@ fun SuppliersScreen(navController: NavController){
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("Total amount", style = MaterialTheme.typography.titleMedium)
-                Text("156.20 $", style = MaterialTheme.typography.titleMedium)
+                Text("156.20 ksh", style = MaterialTheme.typography.titleMedium)
             }
         }
     }

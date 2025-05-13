@@ -53,8 +53,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.tonny.pharmatrack.navigation.ROUT_ADD_MEDICINE
+import com.tonny.pharmatrack.navigation.ROUT_HOME
 import com.tonny.pharmatrack.navigation.ROUT_LOGIN
 import com.tonny.pharmatrack.navigation.ROUT_MEDICINE_LIST
+import com.tonny.pharmatrack.navigation.ROUT_ORDERS
 import com.tonny.pharmatrack.navigation.ROUT_SUPPLIERS
 import com.tonny.pharmatrack.viewmodel.MedicineViewModel
 
@@ -215,7 +217,7 @@ fun BottomNavigationBar(navController: NavController) {
     ) {
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_MEDICINE_LIST) },
+            onClick = { navController.navigate(ROUT_HOME) },
             icon = { Icon(Icons.Default.Home, contentDescription = "Medicine List") },
             label = { Text("Home") }
         )
@@ -229,14 +231,14 @@ fun BottomNavigationBar(navController: NavController) {
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate(ROUT_LOGIN) },
+            onClick = { navController.navigate(ROUT_ORDERS) },
             icon = { Icon(painter = painterResource(R.drawable.profile), contentDescription = "") },
             label = { Text("Profile") }
         )
         NavigationBarItem(
             selected = false,
             onClick = { navController.navigate(ROUT_SUPPLIERS) },
-            icon = { Icon(painter = painterResource(R.drawable.visibility), contentDescription = "") },
+            icon = { Icon(painter = painterResource(R.drawable.name), contentDescription = "") },
             label = { Text("Profile") }
         )
     }

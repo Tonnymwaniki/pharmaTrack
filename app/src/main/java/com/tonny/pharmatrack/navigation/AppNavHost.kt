@@ -30,6 +30,8 @@ import com.tonny.pharmatrack.ui.screens.suppliers.SuppliersScreen
 import com.tonny.pharmatrack.viewmodel.AuthViewModel
 import com.tonny.pharmatrack.viewmodel.MedicineViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.tonny.pharmatrack.ui.screens.intent.IntentScreen
+
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavHost(
@@ -73,6 +75,10 @@ fun AppNavHost(
 
         composable(ROUT_INVENTORY) {
             InventoryScreen(navController)
+        }
+
+        composable(ROUT_INTENT) {
+            IntentScreen(navController)
         }
 
 

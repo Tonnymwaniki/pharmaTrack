@@ -69,7 +69,7 @@ fun StartScreen(navController: NavController){
             Button(
                 onClick = {
                     // Navigate to next screen, e.g., "home" or "medicines"
-                    navController.navigate(ROUT_LOGIN)
+                    navController.navigate(ROUT_HOME)
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF57A90E))
             ) {
@@ -84,7 +84,7 @@ fun StartScreen(navController: NavController){
                 color = Color.White,
                 modifier = Modifier.clickable {
                     // Navigate directly to home or login
-                    navController.navigate("home")
+                    navController.navigate(ROUT_HOME)
                 }
             )
         }

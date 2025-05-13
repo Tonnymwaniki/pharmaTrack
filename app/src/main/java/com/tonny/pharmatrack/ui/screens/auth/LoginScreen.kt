@@ -34,6 +34,7 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.material.icons.filled.Lock
 import com.tonny.pharmatrack.navigation.ROUT_DASHBOARD
 import com.tonny.pharmatrack.navigation.ROUT_REGISTER
+import com.tonny.pharmatrack.navigation.ROUT_START
 import com.tonny.pharmatrack.navigation.ROUT_SUPPLIERS
 
 
@@ -55,10 +56,10 @@ fun LoginScreen(
                 Toast.makeText(context, "Invalid Credentials", Toast.LENGTH_SHORT).show()
             } else {
                 if (user.role == "admin") {
-                    navController.navigate(ROUT_SUPPLIERS) {
+                    navController.navigate(ROUT_HOME) {
                     }
                 } else {
-                    navController.navigate(ROUT_DASHBOARD) {
+                    navController.navigate(ROUT_HOME) {
                     }
                 }
             }

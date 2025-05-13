@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
@@ -156,15 +157,15 @@ fun HomeScreen(navController: NavController){
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    ProductCard("Paracetamol", "IDR 20.000", R.drawable.paracetamol )
-                    ProductCard("Cough Syrup", "IDR 24.500", R.drawable.syrup)
+                    ProductCard("Paracetamol", "ksh 20.000", R.drawable.paracetamol )
+                    ProductCard("Cough Syrup", "ksh 24.500", R.drawable.syrup)
                 }
 
                 AnimatedVisibility(visible = showMore) {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            ProductCard("Vitamin C", "IDR 15.000", R.drawable.vitamin)
-                            ProductCard("Antacid Tablets", "IDR 18.000", R.drawable.antacid)
+                            ProductCard("Vitamin C", "ksh 15.000", R.drawable.vitamin)
+                            ProductCard("Antacid Tablets", "ksh 18.000", R.drawable.antacid)
                         }
                     }
                 }
@@ -178,32 +179,36 @@ fun HomeScreen(navController: NavController){
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ProductCard("vitamin D", "IDR 21.000", R.drawable.vitamin )
-                ProductCard("Amoxil ", "IDR 20.500", R.drawable.amoxil)
+                ProductCard("vitamin D", "ksh 21.000", R.drawable.vitamin )
+                Spacer(modifier = Modifier.height(8.dp))
+                ProductCard("Amoxil ", "ksh 20.500", R.drawable.amoxil)
+            }
+
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth ()
+            ) {
+                ProductCard("levoxyl", "ksh 22.000", R.drawable.levoxyl )
+                Spacer(modifier = Modifier.height(10.dp))
+                ProductCard("zestril ", "ksh 23.500", R.drawable.zestril)
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ProductCard("levoxyl", "IDR 22.000", R.drawable.levoxyl )
-                ProductCard("zestril ", "IDR 23.500", R.drawable.zestril)
+                ProductCard("Motrin", "ksh 16.000", R.drawable.motrin )
+                Spacer(modifier = Modifier.height(10.dp))
+                ProductCard("Aderal ", "ksh 19.500", R.drawable.aderal)
             }
 
             Row(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
-                ProductCard("Motrin", "IDR 16.000", R.drawable.motrin )
-                ProductCard("Aderal ", "IDR 19.500", R.drawable.aderal)
-            }
-
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                ProductCard("Norvasc", "IDR 16.000", R.drawable.norvasc )
-                ProductCard("Panadol ", "IDR 19.500", R.drawable.panadol)
+                ProductCard("Norvasc", "ksh 16.000", R.drawable.norvasc )
+                Spacer(modifier = Modifier.height(10.dp))
+                ProductCard("Panadol ", "ksh 19.500", R.drawable.panadol)
             }
         }
     }
@@ -215,12 +220,14 @@ fun ProductCard(name: String, price: String, imageResId: Int) {
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = Color(0xFF0D5BEE)),
         modifier = Modifier
-            .width(150.dp)
-            .height(220.dp)
+            .width(200.dp)
+            .height(300.dp)
+            .padding(start=20.dp, end = 20.dp , top = 20.dp)
+
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(12.dp)
+            modifier = Modifier.padding(15.dp)
         ) {
             Image(
                 painter = painterResource(id = imageResId),

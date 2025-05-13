@@ -197,7 +197,7 @@ fun MedicineCard(medicine: Medicine) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(medicine.name, fontWeight = FontWeight.Bold)
                 Text("Stock: ${medicine.stock}", style = MaterialTheme.typography.bodySmall)
-                Text("Price: $${medicine.price}", style = MaterialTheme.typography.bodySmall)
+                Text("Price: ksh${medicine.price}", style = MaterialTheme.typography.bodySmall)
             }
 
             if (medicine.stock < 10) {

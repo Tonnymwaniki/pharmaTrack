@@ -15,6 +15,7 @@ const val ROUT_SUPPLIERS = "Suppliers"
 const val ROUT_START = "Start"
 const val ROUT_DASHBOARD = "Start"
 const val ROUT_INVENTORY = "inventory"
+const val ROUT_INTENT = "intent"
 
 const val ROUT_ADD_MEDICINE = "add_product"
 const val ROUT_MEDICINE_LIST = "product_list"
